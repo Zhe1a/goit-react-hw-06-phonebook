@@ -1,13 +1,10 @@
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
-import combineReducers from './contacts/contacts-reducer';
-import logger from 'redux-logger';
+import { configureStore } from '@reduxjs/toolkit';
+import { tasksReducer } from './contacts/contacts-actions';
+import { filterReducers } from './contacts/filtersSlice';
 
-const middleware = [...getDefaultMiddleware(), logger];
-
-const store = configureStore({
-  reducer: combineReducers,
-  middleware,
-  // devTools: process.env.NODE_ENV === 'development',
+export const store = configureStore({
+  reducer: {
+    contacts: tasksReducer,
+    filters: filterReducers,
+  },
 });
-
-export default store;

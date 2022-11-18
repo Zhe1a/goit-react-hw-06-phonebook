@@ -1,17 +1,20 @@
 import s from './Filter.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeFilter } from 'redux/contacts/contacts-actions';
+import { statusFilter } from 'redux/contacts/filtersSlice';
 
 function Filter() {
-  const filter = useSelector(state => state.filter);
-  const dispatch = useDispatch();
+  const { filters } = useSelector(state => state);
 
-  const handleChangeFilter = e => dispatch(changeFilter(e.target.value));
+  const dispatch = useDispatch();
+  const handleChangeFilter = e => {
+    const {value} = e.target
+    dispatch(statusFilter(value))
+  };;
 
   return (
     <div className={s['heder']}>
       <input
-        value={filter}
+        value={filters.status}
         className={s['input']}
         onChange={handleChangeFilter}
       ></input>
