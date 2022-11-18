@@ -4,6 +4,7 @@ import { deleteContact } from 'redux/contacts/contacts-actions';
 
 function ContactList() {
   const { contacts, filters } = useSelector(state => state);
+
   const dispatch = useDispatch();
   const onDeleteBtn = id => dispatch(deleteContact(id));
 
@@ -13,7 +14,7 @@ function ContactList() {
     );
   };
 
-  const filterContacts = filteredContacts(contacts, filters.status);
+  const filterContacts = filteredContacts(contacts.contactsList, filters.status);
 
   return (
     <ul className={s.Item}>

@@ -10,12 +10,14 @@ export const defaultContacts = [
 ];
 
 const contactsSlice = createSlice({
-  name: "contacts",
-  initialState: JSON.parse(window.localStorage.getItem('contacts')) ?? defaultContacts,
+  name: "contactsList",
+  initialState: {
+    contactsList: defaultContacts,
+  },
   reducers: {
     addContact: {
       reducer(state, action) {
-        state.push(action.payload);
+        state.contactsList.push(action.payload);
       },
       prepare(name,number) {
         return {
@@ -28,8 +30,8 @@ const contactsSlice = createSlice({
       },
     },
     deleteContact(state, {payload}) {
-      const index = state.findIndex(task => task.id === payload);
-      state.splice(index, 1);
+      const index = state.contactsList.findIndex(task => task.id === payload);
+      state.contactsList.splice(index, 1);
     },
   },
 });

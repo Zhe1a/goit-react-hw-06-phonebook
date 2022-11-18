@@ -3,17 +3,10 @@ import s from './App.module.css';
 import ContactForm from './ContactForm';
 import Filter from './Filter';
 import ContactList from './ContactList';
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+
 
 
 function App() {
-  const contactsList = useSelector(state => {
-    return state.contacts;
-  });
-  useEffect(() => {
-    window.localStorage.setItem('contacts', JSON.stringify(contactsList));
-  }, [contactsList]);
 
   return (
     <>
